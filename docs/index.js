@@ -1,3 +1,5 @@
+import { createRouter, createWebHistory } from 'vue-router';
+
 // const JSONDATA = require("data.json");
 
 Vue.use(Vuex);
@@ -11,7 +13,10 @@ Vue.component('coredata', Data);
 // hljs.registerLanguage('solidity', window.hljsDefineSolidity);
 // hljs.initHighlightingOnLoad();
 
-const router = new VueRouter({
+// https://router.vuejs.org/guide/migration/#new-router-becomes-createrouter
+const router = createRouter({
+  // https://router.vuejs.org/guide/migration/#new-history-option-to-replace-mode
+  // history: createWebHistory(),
   // mode: 'history', // https://stackoverflow.com/questions/45201014/how-to-handle-anchors-bookmarks-with-vue-router
   routes: routes,
 });
