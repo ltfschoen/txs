@@ -22,7 +22,7 @@
     <!-- <script src="http://localhost:8098"></script> -->
     <!-- <script src="js/flatpickr.js"></script> -->
     <!-- vue 3.3.0-alpha.4 -->
-    <script src="js/vue.global.js"></script>
+    <!-- <script src="js/vue.global.js"></script> -->
     <!-- vue-compat 3.3.0-alpha.4 -->
     <script src="js/vue-compat.global.js"></script>
     <script src="js/bootstrap-vue.min.js"></script>
@@ -105,14 +105,15 @@
   </head>
   <body>
     <div id="app">
-      <b-container fluid class="m-0 p-1">
+      <div>
+      <!-- <b-container fluid class="m-0 p-1"> -->
         <div>
-          <b-navbar variant="light" fixed="top" class="mx-1 my-0 p-0">
-            <b-navbar-brand to="/" variant="primary">
+          <b-navbar variant="light" fixed="top" class="mx-1 my-0 p-0" tag="">
+            <!-- <b-navbar-brand to="/" variant="primary">
               <b-avatar rounded variant="light" size="3.0rem" src="images/ZombieBaby_001_gp2_3871_8601_10786.gif" v-b-popover.hover.bottom="'gm'" class="ml-0"></b-avatar>
               <em v-b-popover.hover.bottom="'gm gm gm'">Txs</em>
-            </b-navbar-brand>
-            <b-navbar-nav class="ml-auto">
+            </b-navbar-brand> -->
+            <b-navbar-nav class="ml-auto" tag="">
               <!-- <b-nav-item size="sm" to="/account" active-class="active" v-b-popover.hover="'View transactions by account'">Account</b-nav-item> -->
               <!-- <b-nav-item size="sm" to="/transactions" active-class="active" v-b-popover.hover="'View/edit transactions'">Transactions</b-nav-item> -->
               <b-nav-item size="sm" to="/accounts" active-class="active" v-b-popover.hover="'View/edit accounts'">Accounts</b-nav-item>
@@ -167,7 +168,8 @@
             gm, and enjoy! <i>txs &copy; Bok Consulting Pty Ltd 2023. The MIT Licence
           </b-card-text>
         </b-card>
-      </b-container>
+      <!-- </b-container> -->
+    </div>
     </div>
     <div>
     </div>

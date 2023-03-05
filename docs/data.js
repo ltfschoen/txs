@@ -81,7 +81,7 @@ const Data = {
     logDebug("Data", "Calling timeoutCallback()");
     this.timeoutCallback();
   },
-  destroyed() {
+  unmounted() {
     this.reschedule = false;
   },
 };

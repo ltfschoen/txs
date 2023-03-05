@@ -102,7 +102,13 @@ const app = Vue.createApp({
       show: true,
     };
   },
-  compatConfig: { MODE: 3 },
+  compatConfig: {
+    // COMPONENT_FUNCTIONAL: true,
+    MODE: 3,
+    // ATTR_FALSE_VALUE: false,
+    // ATTR_ENUMERATED_COERCION: false,
+    RENDER_FUNCTION: false
+  },
   computed: {
     powerOn() {
       return store.getters['connection/powerOn'];
@@ -145,8 +151,8 @@ const app = Vue.createApp({
     this.reschedule = true;
     this.timeoutCallback();
   },
-  destroyed() {
-    // logInfo("app", "destroyed() Called");
+  unmounted() {
+    // logInfo("app", "unmounted() Called");
     this.reschedule = false;
   },
   methods: {
