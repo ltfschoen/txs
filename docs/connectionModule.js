@@ -495,7 +495,7 @@ const Connection = {
       t.timeoutCallback();
     }, 1000);
   },
-  destroyed() {
+  unmounted() {
     logDebug("Connection", "destroyed()");
     this.reschedule = false;
   },
