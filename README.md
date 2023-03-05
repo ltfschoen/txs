@@ -17,7 +17,7 @@ npx -y @vue/devtools
 ```
 * Uncomment `<script src="http://localhost:8098"></script>` in index.html
 * Click "Yes" when popup appears _Do you want the application “Electron.app” to accept incoming network connections?_
-* Fetch and copy source map files to relevant folders for debugging:
+* Fetch and copy latest dependencies (trying to get Vue.js 3 to work) and source map files to relevant folders for debugging:
 ```bash
 ./scripts/updateDependencies.sh
 ```

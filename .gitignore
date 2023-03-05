@@ -18,3 +18,5 @@ private
 # source maps
 *.js.map
 *.css.map
+
+temp

@@ -1,23 +1,18 @@
 // const JSONDATA = require("data.json");
 
-Vue.use(Vuex);
-// Vue.use(VueApexCharts);
-
-// Vue.component('apexchart', VueApexCharts);
-Vue.component('connection', Connection);
-Vue.component('coredata', Data);
-// Vue.component('flat-pickr', VueFlatpickr);
-
 // hljs.registerLanguage('solidity', window.hljsDefineSolidity);
 // hljs.initHighlightingOnLoad();
 
-const router = new VueRouter({
+// https://router.vuejs.org/guide/migration/#new-router-becomes-createrouter
+const router = VueRouter.createRouter({
+  // https://router.vuejs.org/guide/migration/#new-history-option-to-replace-mode
+  history: VueRouter.createWebHistory(),
   // mode: 'history', // https://stackoverflow.com/questions/45201014/how-to-handle-anchors-bookmarks-with-vue-router
   routes: routes,
 });
 
 const storeVersion = 1;
-const store = new Vuex.Store({
+const store = Vuex.createStore({
   strict: false, // TODO Set to true to test, false to disable _showDetails & vuex mutations
   // state: {
   //   username: 'Jack',
@@ -66,7 +61,7 @@ const store = new Vuex.Store({
 });
 
 // Subscribe to store updates
-store.subscribe((mutation, state) => {
+const unsubStore = store.subscribe((mutation, state) => {
   let store = {
 		version: storeVersion,
 		state: state,
@@ -78,15 +73,19 @@ store.subscribe((mutation, state) => {
 });
 
 // sync store and router by using `vuex-router-sync`
-sync(store, router);
+const synced = VuexRouterSync.sync(store, router);
 
-const app = new Vue({
+const app = Vue.createApp({
   router,
   store,
   beforeCreate() {
     setLogLevel(1); // 0 = NONE, 1 = INFO (default), 2 = DEBUG
     logDebug("index.js", "app:beforeCreate()");
-		this.$store.commit('initialiseStore');
+    this.$store.commit('initialiseStore');
+		// async () => {
+    //   logDebug("index.js", "app:beforeCreate()", this.$store);
+    //   await this.$store.commit('initialiseStore');
+    // }
 	},
   data() {
     return {
@@ -103,6 +102,7 @@ const app = new Vue({
       show: true,
     };
   },
+  compatConfig: { MODE: 3 },
   computed: {
     powerOn() {
       return store.getters['connection/powerOn'];
@@ -206,4 +206,18 @@ const app = new Vue({
   //   "network": Network,
   //   "account": Account,
   },
-}).$mount('#app');
+});
+// https://v3-migration.vuejs.org/breaking-changes/global-api.html#a-note-for-plugin-authors
+// console.log('Vuex: ', Vuex);
+app.use(router);
+app.use(store);
+app.mount('#app');
+
+// app.use(Vuex);
+// app.use(VueApexCharts);
+
+// https://vuejs.org/api/application.html#app-component
+// app.component('apexchart', VueApexCharts);
+app.component('connection', Connection);
+app.component('coredata', Data);
+// app.component('flat-pickr', VueFlatpickr);

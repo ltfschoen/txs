@@ -36,8 +36,9 @@ const routes = [{
   //   component: Docs,
   //   name: 'Docs',
   }, {
-    path: '*',
+    // https://router.vuejs.org/guide/migration/#removed-star-or-catch-all-routes
+    path: '/:pathMatch(.*)*',
     component: Welcome,
-    name: ''
+    name: 'welcome'
   }
 ];
